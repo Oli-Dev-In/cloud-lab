@@ -10,9 +10,11 @@
 | GitHub | La copie distante du repository. Elle existe sur les serveurs de GitHub, pas sur ton ordinateur. |
 
 ## Flux complet
-Flux complet:
+
+```
 Working Directory → Staging Area → Repository local → GitHub
-     (tu codes)      (git add)      (git commit)     (git push)
+     (on code)        (git add)      (git commit)     (git push)
+```
 
 ## git add
 `git add .` est la commande qui fait passer les fichiers du Working Directory vers la Staging Area. Elle rassemble tous les fichiers qui ont été modifiés vers une aire d'attente pré-commit. Si on remplace le `.` par un nom de fichier, seul le fichier nommé y sera placé.
