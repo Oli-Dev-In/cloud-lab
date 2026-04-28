@@ -20,38 +20,10 @@ olivier@ubuntu-server-01:/etc$
 | `@` | Separator — "at" |
 | `ubuntu-server-01` | Hostname of the server you are working on |
 | `:/etc` | Current directory — where you are in the filesystem |
-| `$` | User type — normal user with limited rights |
-
-**`$` vs `#`**
-
-- `$` — normal user, limited rights
-- `#` — root, absolute administrator with full system rights
-
-This convention is universal across all Linux systems. Always check the prompt symbol before running powerful commands — knowing whether you are a normal user or root matters.
-
-## Essential commands
-
-### pwd
-Print Working Directory. Displays the full path of your current location in the filesystem. First reflex when lost in a terminal.
-
-```bash
-olivier@ubuntu-server-01:~$ pwd
-/home/olivier
-```
-
-### ls
-List — displays the contents of a directory.
-
-```bash
-olivier@ubuntu-server-01:~$ ls /
-bin   cdrom  etc   lib    lost+found  mnt  proc  run   snap  sys  usr
-boot  dev    home  lib64  media       opt  root  sbin  srv   tmp  var
-```
-
-`ls /` asks Linux to list all folders at the root of the filesystem.
-
-### ~
-Shortcut representing your personal home directory. For user olivier, `~` is equivalent to `/home/olivier`. Usable in any command.
+| `~` | Special shortcut for home directory — when shown in prompt means you are in `/home/olivier` |
+| `/` | Root of the filesystem — when shown in prompt means you are at the top of the Linux directory tree |
+| `$` | Normal user with limited rights |
+| `#` | Root user — absolute administrator with full system rights. Always check this symbol before running powerful commands. |
 
 ## Key directories
 
