@@ -6,6 +6,29 @@ In Linux, everything starts from `/` — the root of the filesystem. Unlike Wind
 
 A fundamental Linux philosophy: **everything is a file**. Hardware devices, system state, configuration — all represented as files.
 
+## The prompt
+
+The terminal prompt gives you four pieces of information at a glance:
+
+```bash
+olivier@ubuntu-server-01:/etc$
+```
+
+| Element | Meaning |
+|---|---|
+| `olivier` | Current logged-in user |
+| `@` | Separator — "at" |
+| `ubuntu-server-01` | Hostname of the server you are working on |
+| `:/etc` | Current directory — where you are in the filesystem |
+| `$` | User type — normal user with limited rights |
+
+**`$` vs `#`**
+
+- `$` — normal user, limited rights
+- `#` — root, absolute administrator with full system rights
+
+This convention is universal across all Linux systems. Always check the prompt symbol before running powerful commands — knowing whether you are a normal user or root matters.
+
 ## Essential commands
 
 ### pwd
