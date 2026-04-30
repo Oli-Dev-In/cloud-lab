@@ -21,3 +21,26 @@ Connecting to ubuntu-server-01 running in VirtualBox from the VSCode terminal on
 
 ### Cloud — AWS EC2
 When an EC2 instance is running on AWS in a datacenter in Dublin or Frankfurt, SSH is the standard way to connect and manage it. You never interact with cloud servers through a graphical interface — always through SSH from your terminal.
+
+## Reconnecting after a session
+
+The SSH terminal does not persist between VSCode sessions. Every time you reopen VSCode, you need to reconnect manually.
+
+**Prerequisites**: Ubuntu VM must be running in VirtualBox before connecting.
+
+**Command to reconnect from VSCode terminal:**
+
+```bash
+ssh -p 2222 olivier@127.0.0.1
+```
+
+**Command breakdown:**
+
+| Element | Meaning |
+|---|---|
+| `ssh` | The SSH client command |
+| `-p 2222` | Connect on port 2222 — required because VirtualBox port forwarding redirects Windows port 2222 to VM port 22. Without `-p`, SSH would try port 22 on Windows directly and fail. |
+| `olivier@` | Username to connect with on the remote server. Format is always `user@address`. On AWS you will see `ubuntu@address` or `ec2-user@address` depending on the OS. |
+| `127.0.0.1` | Loopback address — always refers to your own local machine. Fixed and universal, never changes. Used here because the VM is hidden behind VirtualBox NAT. On a real AWS server you would use its public IP instead, e.g. `54.123.45.67`. |
+
+Enter your password when prompted. You will land directly in your Ubuntu Server terminal.
