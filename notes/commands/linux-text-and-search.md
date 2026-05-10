@@ -1,4 +1,4 @@
-# Linux File Reading Commands
+# linux-text-and-search commands
 
 ## echo
 Prints text or the value of a variable to the terminal. Simple but used constantly in scripts to display messages or write content to files.
@@ -106,3 +106,24 @@ wc -c file.txt
 **Output format**: `lines words bytes filename`
 
 **Professional use**: quickly check how many lines a log file has, count entries in a list.
+
+## file
+Detects and displays the real type of a file — based on file content, not the extension. Useful when a file has no extension or a misleading one.
+
+```bash
+# Check the type of a file
+file image.jpg
+
+# Check the type of a script
+file script.sh
+
+# Check the type of a binary
+file /bin/ls
+```
+
+**Example output:**
+```
+script.sh: Bourne-Again shell script, ASCII text executable
+image.jpg: JPEG image data
+/bin/ls: ELF 64-bit LSB pie executable
+```

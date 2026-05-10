@@ -26,6 +26,19 @@ olivier@ubuntu-server-01:~$ man ls
 | `Space` | Scroll page by page |
 | `q` | Quit and return to terminal |
 
+## --help
+Quick summary of a command's usage and options. Faster than `man` when you just need a reminder of a specific option.
+
+```bash
+grep --help
+ls --help
+chmod --help
+```
+
+**Difference with man:**
+- `--help` — short summary, fast, directly in terminal
+- `man` — full documentation, detailed, navigable
+
 ## clear
 Clears the terminal screen. Keyboard shortcut: `Ctrl + L`.
 
