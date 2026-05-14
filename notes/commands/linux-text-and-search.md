@@ -33,6 +33,27 @@ cat -n file.txt
 
 **Professional use**: quick way to read config files, logs, or scripts without opening an editor.
 
+## less
+Displays file content page by page. Unlike `cat` which dumps everything at once, `less` lets you navigate through long files. Essential for reading logs.
+
+```bash
+# Open a file with less
+less /var/log/syslog
+
+# Open and search immediately
+less +/search-term /var/log/syslog
+```
+
+**Navigation inside less:**
+| Key | Action |
+|---|---|
+| `↑` `↓` | Scroll line by line |
+| `Space` | Next page |
+| `b` | Previous page |
+| `/term` | Search forward |
+| `n` | Next search result |
+| `q` | Quit |
+
 ## find
 Searches for files and directories in the filesystem by name, type, size, date, or permissions.
 
