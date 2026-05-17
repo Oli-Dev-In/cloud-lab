@@ -126,3 +126,30 @@ dpkg -l | grep package-name
 sudo dpkg -r package-name
 ```
 
+## runlevel
+Displays the previous and current runlevel of the system.
+
+```bash
+runlevel
+# → N 5   (N = no previous runlevel, 5 = current runlevel)
+```
+
+## systemctl get-default
+Displays the current default systemd target — the mode the system boots into.
+
+```bash
+systemctl get-default
+# → graphical.target   (boots to GUI)
+# → multi-user.target  (boots to command line)
+```
+
+## systemctl set-default
+Changes the default systemd target — takes effect on next reboot.
+
+```bash
+# Switch to command line mode (server standard)
+sudo systemctl set-default multi-user.target
+
+# Switch back to graphical mode
+sudo systemctl set-default graphical.target
+```

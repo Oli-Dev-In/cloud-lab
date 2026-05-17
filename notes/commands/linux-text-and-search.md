@@ -54,6 +54,23 @@ less +/search-term /var/log/syslog
 | `n` | Next search result |
 | `q` | Quit |
 
+## more
+Displays file content page by page — forward only. Predecessor of `less`. Cannot scroll back up.
+
+```bash
+more /var/log/syslog
+```
+
+**more vs less:**
+| | more | less |
+|---|---|---|
+| Scroll down | Yes | Yes |
+| Scroll back up | No | Yes |
+| Search | Limited | Yes — use `/term` |
+| Production use | Rarely | Standard |
+
+**Note**: "less is more" — `less` replaced `more` because it does everything `more` does and more. Always prefer `less` in practice.
+
 ## find
 Searches for files and directories in the filesystem by name, type, size, date, or permissions.
 

@@ -30,6 +30,18 @@ Hidden files and directories start with `.` — `ls` ignores them by default. `-
 
 ### ls -l output explained
 
+**File type identifiers — first character of column 1:**
+
+| Character | File type |
+|---|---|
+| `-` | Regular file |
+| `d` | Directory |
+| `c` | Character device |
+| `b` | Block device |
+| `l` | Symbolic link |
+| `s` | Socket |
+| `p` | Named pipe |
+
 ```bash
 drwxr-xr-x 4 root root 4096 Apr 25 20:52 ssh
 -rw-r--r-- 1 root root  231 Apr 25 20:50 hosts
