@@ -6,8 +6,8 @@ Personal knowledge base built during this learning journey.
 
 | Folder | Content |
 |---|---|
-| `concepts/` | Technical concepts explained in my own words |
-| `commands/` | Command references with real examples |
+| `concepts/` | Technical concepts explained in my own words — Linux kernel, boot sequence, virtualization, SSH, bash environment |
+| `commands/` | Command references with real examples — Linux navigation, file management, permissions, networking, hardware |
 
 ## Rules
 

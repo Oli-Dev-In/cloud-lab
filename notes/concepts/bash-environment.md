@@ -51,6 +51,60 @@ echo $MY_VAR # print a specific variable
 | `$PATH` | Directories where the shell looks for commands |
 | `$USER` | Current logged-in user |
 
+## $PATH — How Linux Finds Commands
+
+`$PATH` is an environment variable containing a list of directories where the shell looks for executable commands. When you type a command, the shell searches each directory in PATH in order until it finds the executable.
+
+```bash
+# Display your current PATH
+echo $PATH
+# → /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Check which directory a command comes from
+which python3
+# → /usr/bin/python3
+
+# Add a new directory to PATH (current session only)
+export PATH=$PATH:/opt/OBS/bin
+
+# Add permanently
+echo 'export PATH=$PATH:/opt/newprogram/bin' >> ~/.profile
+```
+
+**Why it matters**: if a command is not found, it means its directory is not in your PATH. Adding a directory to PATH makes its programs available as commands from anywhere.
+
+## $HOME
+
+Environment variable containing the path to the current user's home directory. Equivalent to `~`.
+
+```bash
+echo $HOME
+# → /home/olivier
+```
+
+## Built-in vs External Commands
+
+Linux commands are divided into two types:
+
+**Built-in commands** — integrated directly into the shell. Always available regardless of what is installed on the system. No file exists on disk for them.
+
+Examples: `cd`, `pwd`, `export`, `mkdir`, `echo`, `type`
+
+**External commands** — separate binary programs stored on disk. Located by the shell using `$PATH`. Can be installed or removed.
+
+Examples: `mv`, `cp`, `ls`, `grep`, `find`, `python3`
+
+```bash
+# Check if a command is built-in or external
+type cd
+# → cd is a shell builtin
+
+type mv
+# → mv is /usr/bin/mv
+```
+
+**Why it matters**: built-in commands run faster since the shell does not need to search PATH or load a program. External commands give you flexibility — you can install new tools and make them available as commands by adding their directory to PATH.
+
 ## Making configuration permanent with ~/.profile
 
 Commands and settings typed directly in the terminal are lost when the session closes. To make them permanent, add them to `~/.profile` — a file executed automatically at every login.

@@ -33,6 +33,20 @@ cat -n file.txt
 
 **Professional use**: quick way to read config files, logs, or scripts without opening an editor.
 
+### Writing to a file with cat
+
+```bash
+# Write content to a file (overwrites existing content)
+cat > filename.txt
+# Type your content, then press Ctrl+D to save and exit
+
+# Append content to a file
+cat >> filename.txt
+# Type your content, then press Ctrl+D to save and exit
+```
+
+**Note**: for anything beyond simple writes, use a proper text editor like `nano` or `vim`.
+
 ## less
 Displays file content page by page. Unlike `cat` which dumps everything at once, `less` lets you navigate through long files. Essential for reading logs.
 

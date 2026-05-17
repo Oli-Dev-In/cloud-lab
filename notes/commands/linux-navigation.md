@@ -99,6 +99,20 @@ lrwxrwxrwx 1 root root 27 Apr 20 18:07 localtime -> /usr/share/zoneinfo/Etc/UTC
 
 `localtime` has no content of its own — it redirects to the real timezone file. Changing the timezone means changing where the symlink points, not moving files.
 
+### ls -lt and ls -ltr
+
+```bash
+# List with detailed info, sorted by modification time (newest first)
+ls -lt
+
+# List with detailed info, sorted by modification time (oldest first)
+ls -ltr
+```
+
+**-t** sorts by modification time. Combined with **-l** for detailed view and **-r** to reverse the order.
+
+**Professional use**: `ls -ltr` is the standard way to find recently modified files — the most recent file is always at the bottom, easy to spot.
+
 ## cd
 Change Directory — navigate to a different location in the filesystem.
 

@@ -160,3 +160,81 @@ env
 # Find a specific variable
 env | grep PATH
 ```
+
+## uptime
+Displays how long the system has been running, number of logged-in users, and CPU load averages for the last 1, 5, and 15 minutes.
+
+```bash
+uptime
+# → 19:18:51 up 19:48, 2 users, load average: 1.18, 0.49, 0.36
+```
+
+**Output breakdown:**
+| Element | Meaning |
+|---|---|
+| `19:18:51` | Current time |
+| `up 19:48` | System has been running for 19 hours 48 minutes |
+| `2 users` | Number of logged-in users |
+| `load average: 1.18, 0.49, 0.36` | CPU load over last 1, 5, and 15 minutes |
+
+**Professional use**: quick health check on a server — is it overloaded? How long since last reboot?
+
+## type
+Identifies whether a command is a shell built-in or an external program. Important for understanding how commands are executed.
+
+```bash
+type cd
+# → cd is a shell builtin
+
+type mv
+# → mv is /usr/bin/mv
+
+type echo
+# → echo is a shell builtin
+```
+
+**Two types of Linux commands:**
+
+| Type | Description | Examples |
+|---|---|---|
+| Built-in | Integrated into the shell itself. Always available, no file on disk. | `cd`, `pwd`, `export`, `mkdir`, `echo` |
+| External | Separate binary programs on disk. Located via $PATH. | `mv`, `cp`, `ls`, `grep`, `find` |
+
+## history
+Displays the list of previously executed commands in the current shell session. Linux saves command history automatically.
+
+```bash
+# Show full command history
+history
+
+# Show last 10 commands
+history 10
+
+# Re-execute command number 42 from history
+!42
+
+# Re-execute the last command
+!!
+```
+
+**Professional use**: recall a complex command you ran earlier without retyping it. Also useful for auditing what was done on a server.
+
+## pushd and popd
+Navigate directories while maintaining a stack of previous locations. More powerful than `cd -` which only remembers one previous location.
+
+```bash
+# Go to /etc and save current location on the stack
+pushd /etc
+
+# Go back to the previous directory (pops from stack)
+popd
+
+# View the directory stack
+dirs
+```
+
+**pushd vs cd -:**
+| | `cd -` | `pushd/popd` |
+|---|---|---|
+| Remembers | 1 previous location | Multiple locations (stack) |
+| Use case | Quick back-and-forth | Complex navigation across many directories |

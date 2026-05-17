@@ -6,7 +6,7 @@ Study notes, resources, and progress tracking for each certification.
 
 | Certification | Status | Target Date |
 |---|---|---|
-| AWS Cloud Practitioner | In progress | August 2026 |
-| AWS Solutions Architect Associate | Not started | November 2026 |
-| Terraform Associate | Not started | November 2026 |
-| AZ-900 Azure Fundamentals | Not started | Early 2027 |
+| AWS Cloud Practitioner | Not started | Late 2026 |
+| AWS Solutions Architect Associate | Not started | Early 2027 |
+| Terraform Associate | Not started | Early 2027 |
+| AZ-900 Azure Fundamentals | Not started | 2027 |
