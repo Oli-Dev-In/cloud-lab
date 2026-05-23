@@ -66,6 +66,37 @@ Passwords are not stored in `/etc/passwd` — they are stored encrypted in `/etc
 sudo cat /etc/shadow
 ```
 
+## /etc/group — Group Database
+
+Every group on the system is stored in `/etc/group`. Each line represents one group.
+
+```
+groupname:x:GID:members
+```
+
+**Real example:**
+```
+nautilus_noc:x:1002:kano
+```
+
+| Field | Meaning |
+|---|---|
+| `nautilus_noc` | Group name |
+| `x` | Password placeholder |
+| `1002` | GID — Group ID |
+| `kano` | Comma-separated list of group members |
+
+**Read a specific group's entry:**
+```bash
+grep groupname /etc/group
+```
+
+## Multi-server Operations
+
+When a task must be performed on multiple servers, the steps are identical on each — connect via SSH, execute, verify, exit.
+
+**Professional note**: repeating manual steps across multiple servers is error-prone and slow. In production, tools like **Ansible** automate this — one playbook runs the same commands on all servers simultaneously. This is covered later in the learning plan.
+
 ## Jump Host Pattern
 
 In professional environments you often cannot connect directly to servers. A **jump host** (also called bastion host) is an intermediate server you connect to first, then SSH from there to internal servers.

@@ -158,12 +158,64 @@ uid=1000(olivier) gid=1000(olivier) groups=1000(olivier),4(adm),24(cdrom),27(sud
 
 Useful to verify which groups you belong to and whether you have sudo access.
 
-## groups
-Displays only the groups the current user belongs to.
+## groupadd
+Creates a new group on the system.
 
 ```bash
-olivier@ubuntu-server-01:~$ groups
-olivier adm cdrom sudo
+# Create a group
+sudo groupadd groupname
+
+# Create a group with a specific GID
+sudo groupadd -g 1050 groupname
+```
+
+**Verify after creation:**
+```bash
+grep groupname /etc/group
+```
+
+## usermod
+Modifies an existing user account. More powerful than useradd — used to change any user attribute after creation.
+
+```bash
+# Add user to a supplementary group (without removing from other groups)
+sudo usermod -aG groupname username
+
+# Change user's primary group
+sudo usermod -g groupname username
+
+# Change user's home directory
+sudo usermod -d /new/home username
+
+# Change user's shell
+sudo usermod -s /bin/bash username
+```
+
+**Critical distinction — -g vs -G vs -aG:**
+
+| Option | Meaning | Risk |
+|---|---|---|
+| `-g` | Change primary group (GID) | Replaces primary group |
+| `-G` | Set supplementary groups list | **Removes user from all other supplementary groups** |
+| `-aG` | Append to supplementary groups | Safe — keeps existing group memberships |
+
+**Professional rule**: always use `-aG` never `-G` alone when adding a user to a group. `-G` without `-a` will remove the user from all other groups not listed — dangerous in production.
+
+## groups
+Displays all groups a user belongs to.
+
+```bash
+# Check groups of current user
+groups
+
+# Check groups of a specific user
+groups username
+```
+
+**Verify group membership after usermod -aG:**
+```bash
+groups kano
+# → kano : kano nautilus_noc
 ```
 
 ## passwd
