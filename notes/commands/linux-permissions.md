@@ -176,3 +176,56 @@ passwd
 # Change another user's password (requires sudo)
 sudo passwd username
 ```
+
+## useradd
+Low-level command to create a new user. Non-interactive — perfect for scripts and automation. Professional standard over `adduser`.
+
+```bash
+# Create a basic user
+sudo useradd username
+
+# Create user with specific UID
+sudo useradd -u 1429 username
+
+# Create user with specific home directory
+sudo useradd -d /var/www/username username
+
+# Create user with specific UID and home directory
+sudo useradd -u 1429 -d /var/www/username username
+
+# Create user with a specific shell
+sudo useradd -s /bin/bash username
+```
+
+**useradd vs adduser:**
+| | `useradd` | `adduser` |
+|---|---|---|
+| Type | Low-level command | Interactive script |
+| Interactive | No | Yes — asks questions |
+| Scripting | Yes — predictable | No |
+| Professional use | Standard in DevOps | Manual user creation only |
+
+**Verify after creation:**
+```bash
+id username                  # check UID, GID, groups
+grep username /etc/passwd    # check all user details
+```
+
+## userdel
+Deletes a user from the system.
+
+```bash
+# Delete user only (keep home directory)
+sudo userdel username
+
+# Delete user AND home directory
+sudo userdel -r username
+```
+
+**Professional rule**: always use `-r` to clean up — leaving orphaned home directories creates clutter and potential security issues.
+
+**Verify after deletion:**
+```bash
+id username                  # should return "no such user"
+grep username /etc/passwd    # should return nothing
+```
