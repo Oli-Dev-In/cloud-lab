@@ -39,6 +39,34 @@ chmod --help
 - `--help` — short summary, fast, directly in terminal
 - `man` — full documentation, detailed, navigable
 
+## tldr
+"Too Long Didn't Read" — community-maintained tool that provides practical examples for commands. Alternative to `man` when you need quick concrete examples rather than full documentation.
+
+```bash
+# Install tldr
+sudo apt install tldr
+
+# Update tldr database
+tldr --update
+
+# Get examples for a command
+tldr ls
+tldr grep
+tldr chmod
+tldr useradd
+```
+
+**man vs --help vs tldr:**
+
+| | `man` | `--help` | `tldr` |
+|---|---|---|---|
+| Content | Full documentation | Options summary | Practical examples only |
+| Length | Long | Short | Very short |
+| Use when | Understanding in depth | Quick option reminder | Need a concrete example fast |
+| Available by default | Yes | Yes | No — must install |
+
+**Professional reflex**: `tldr` for a quick example, `man` for deep understanding.
+
 ## clear
 Clears the terminal screen. Keyboard shortcut: `Ctrl + L`.
 

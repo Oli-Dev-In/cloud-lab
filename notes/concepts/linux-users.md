@@ -82,4 +82,4 @@ ssh user@jump-host
 ssh user@internal-server
 ```
 
-This is a standard security pattern in cloud infrastructure — AWS calls it a bastion host.
+This is a standard security pattern in cloud infrastructure — AWS calls it a bastion host.q

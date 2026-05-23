@@ -1,10 +1,10 @@
 # Linux System Commands
 
 ## apt
-Advanced Package Tool — manages software installation, updates, and removal on Ubuntu and Debian systems. Always requires `sudo`.
+Advanced Package Tool — high-level package manager for Debian-based systems (Ubuntu, Debian, Linux Mint). Automatically resolves dependencies. Always use `apt` over `dpkg` for standard package management.
 
 ```bash
-# Update the package list (refreshes the catalog — does NOT install updates)
+# Update the package list (refresh catalog — does NOT install updates)
 sudo apt update
 
 # Install available upgrades
@@ -13,19 +13,94 @@ sudo apt upgrade
 # Install a specific package
 sudo apt install package-name
 
-# Remove a package
+# Remove a package (keep config files)
 sudo apt remove package-name
 
-# Remove a package and its configuration files
+# Remove a package AND its config files
 sudo apt purge package-name
 
 # Search for a package
 apt search package-name
+
+# Show package details
+apt show package-name
 ```
 
 **Always run `apt update` before `apt install`** — ensures you get the latest available version.
 
-**Professional use**: installing tools on a Linux server — git, python, nginx, docker, and any other software your infrastructure needs.
+**APT flow**: APT → DPKG → installed package. APT is the front-end, DPKG does the actual installation.
+
+## dpkg
+Low-level package manager for Debian-based systems. Installs `.deb` files directly. Does NOT resolve dependencies automatically — use `apt` instead unless you have a manually downloaded `.deb` file.
+
+```bash
+# Install a .deb file
+sudo dpkg -i package.deb
+
+# Remove a package
+sudo dpkg -r package-name
+
+# List installed packages
+dpkg -l
+
+# Check status of a specific package
+dpkg -s package-name
+
+# List files installed by a package
+dpkg -L package-name
+```
+
+**When to use dpkg**: only when you have downloaded a `.deb` file manually and need to install it directly. For everything else, use `apt`.
+
+## rpm
+Low-level package manager for RPM-based systems (RHEL, CentOS, Fedora). Works with `.rpm` files. Does NOT resolve dependencies — use `yum` or `dnf` instead.
+
+```bash
+# Install a package
+sudo rpm -ivh package.rpm
+
+# Uninstall a package
+sudo rpm -e package-name
+
+# Upgrade a package
+sudo rpm -Uvh package.rpm
+
+# Query installed package
+rpm -q package-name
+
+# Verify package integrity
+rpm -Vf /path/to/file
+```
+
+**rpm options for install:**
+- `-i` install
+- `-v` verbose
+- `-h` show progress with hash marks
+
+## yum
+High-level package manager for RPM-based systems. Resolves dependencies automatically. Equivalent of `apt` for Red Hat/CentOS systems.
+
+```bash
+# Install a package
+sudo yum install package-name
+
+# Remove a package
+sudo yum remove package-name
+
+# Update a specific package
+sudo yum update package-name
+
+# Update all packages
+sudo yum update
+
+# List configured repositories
+yum repolist
+
+# Find which package provides a command
+yum provides scp
+```
+
+**Always confirm the transaction summary** before proceeding with yum install or update — review what will be installed or changed.
 
 ## systemctl
 Controls systemd — the Linux initialization system that manages all services. Used constantly in production to start, stop, and monitor services.
