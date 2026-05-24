@@ -262,6 +262,14 @@ sudo useradd -s /bin/bash username
 id username                  # check UID, GID, groups
 grep username /etc/passwd    # check all user details
 ```
+# Create user with non-interactive shell (cannot login interactively)
+sudo useradd -s /sbin/nologin username
+
+# Create user without creating home directory physically
+sudo useradd -M username
+
+# Create user with expiry date (YYYY-MM-DD format)
+sudo useradd -e 2027-02-17 username
 
 ## userdel
 Deletes a user from the system.
@@ -281,3 +289,23 @@ sudo userdel -r username
 id username                  # should return "no such user"
 grep username /etc/passwd    # should return nothing
 ```
+
+## chage
+Manages user password and account expiry information.
+
+```bash
+# View all expiry information for a user
+sudo chage -l username
+
+# Set account expiry date
+sudo chage -E 2027-02-17 username
+```
+
+**Output fields:**
+| Field | Meaning |
+|---|---|
+| Last password change | When password was last changed |
+| Password expires | When password will expire |
+| Account expires | When the account will be disabled |
+
+**Professional use**: always verify expiry settings with `chage -l` after creating a user with `-e`. `grep /etc/passwd` does not show expiry dates.

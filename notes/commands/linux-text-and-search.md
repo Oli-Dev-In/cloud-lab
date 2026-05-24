@@ -113,6 +113,35 @@ find . -mtime -7
 | `-type d` | Directories only |
 | `-mtime` | Modified time in days |
 
+### Advanced usage — filtering and executing
+
+```bash
+# Find only regular files (not directories)
+find /path -type f
+
+# Find only directories
+find /path -type d
+
+# Find files owned by a specific user
+find /path -user username
+
+# Combine filters — regular files owned by specific user
+find /path -type f -user username
+
+# Execute a command on each result found
+find /path -type f -user username -exec cp --parents {} /destination \;
+```
+
+**-exec syntax breakdown:**
+
+| Element | Meaning |
+|---|---|
+| `-exec` | Execute a command for each file found |
+| `{}` | Placeholder — replaced by the current file path |
+| `\;` | Terminates the -exec command — required |
+
+**Why `\;` ?** — tells `find` where the `-exec` command ends. The `\` escapes `;` which has special meaning in bash.
+
 ## grep
 Global Regular Expression Print — searches for a pattern inside file content. Unlike `find` which searches for files by name, `grep` searches what is written inside files.
 

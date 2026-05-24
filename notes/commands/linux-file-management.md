@@ -51,6 +51,16 @@ cp -i source.txt destination.txt
 
 **Professional note**: `-v` (verbose) is useful on large operations to see exactly what is happening in real time. `-i` (interactive) protects against accidental overwrites.
 
+```bash
+# Copy preserving full directory structure from source
+cp --parents source/path/file.txt /destination/
+
+# Used with find to copy multiple files preserving structure
+find /source -type f -user mark -exec cp --parents {} /destination \;
+```
+
+**Result**: `/destination/source/path/file.txt` — full path is preserved under destination.
+
 ## mv
 Move — moves or renames files and directories. Unlike `cp`, the original is removed.
 
