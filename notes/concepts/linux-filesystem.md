@@ -79,7 +79,14 @@ Temporary files. Cleared on every reboot.
 Not a real folder — an interface to the Linux kernel. Reading files here gives real-time system state information.
 
 ### /dev
-Short for "devices". All hardware devices are represented as files here. The hard drive is `/dev/sda`. This is the Linux philosophy in practice: **everything is a file**.
+Short for "devices". All hardware devices are represented as files here. 
+The hard drive is `/dev/sda`. This is the Linux philosophy in practice: 
+**everything is a file**.
+
+Special files in /dev:
+- `/dev/null` — blackhole, discards everything written to it
+- `/dev/zero` — produces infinite stream of null bytes
+- `/dev/random` — produces random data
 
 ### /root
 Home directory for the root user specifically. Separate from /home — the root user does not have a directory under /home.

@@ -142,6 +142,27 @@ find /path -type f -user username -exec cp --parents {} /destination \;
 
 **Why `\;` ?** — tells `find` where the `-exec` command ends. The `\` escapes `;` which has special meaning in bash.
 
+## locate
+Fast file search using a pre-built database. Much faster than `find` but may be outdated.
+
+```bash
+# Find a file by name
+locate City.txt
+
+# Update the database if files are not found
+sudo updatedb
+```
+
+**locate vs find:**
+| | `locate` | `find` |
+|---|---|---|
+| Speed | Very fast | Slower |
+| Data source | Pre-built database | Live filesystem scan |
+| Up to date | May miss recent files | Always current |
+| Use when | Quick search on known filenames | Precise filtering needed |
+
+**Professional rule**: use `locate` for quick searches, `find` when you need precision or the file was recently created.
+
 ## grep
 Global Regular Expression Print — searches for a pattern inside file content. Unlike `find` which searches for files by name, `grep` searches what is written inside files.
 
@@ -166,6 +187,25 @@ grep -c "error" logfile.txt
 ```
 
 **Professional use**: searching logs for errors, finding configuration values, filtering command output.
+
+### Additional grep options
+
+```bash
+# Search for whole word only (not partial matches)
+grep -w "exam" file.txt
+
+# Show lines that do NOT match
+grep -v "pattern" file.txt
+
+# Show N lines after the match
+grep -AN "pattern" file.txt
+
+# Show N lines before the match
+grep -BN "pattern" file.txt
+
+# Show N lines before AND after the match
+grep -AN -BN "pattern" file.txt
+```
 
 ## wc
 Word Count — counts lines, words, and bytes in a file.
