@@ -61,6 +61,15 @@ find /source -type f -user mark -exec cp --parents {} /destination \;
 
 **Result**: `/destination/source/path/file.txt` — full path is preserved under destination.
 
+**Professional shortcut**: `cp file.txt /destination/` — when destination ends with `/`, 
+the file keeps its original name automatically. Cleaner than specifying the full destination path.
+
+```bash
+# These two commands produce identical results
+cp yousuf.tar.gz /home/yousuf.tar.gz
+cp yousuf.tar.gz /home/     # shorter and more readable
+```
+
 ## mv
 Move — moves or renames files and directories. Unlike `cp`, the original is removed.
 

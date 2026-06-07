@@ -39,23 +39,47 @@ curl -I https://example.com
 | Production use | Download scripts, packages | Test APIs, call AWS endpoints, health checks |
 
 ## scp
-Secure Copy — copies files between two machines over SSH. Same security as SSH.
+Secure Copy — copies files between two machines over SSH. Same security as SSH. File transfer equivalent of cp for remote machines.
 
 ```bash
-# Copy a local file to a remote server
-scp file.txt olivier@server:/home/olivier/
+# Copy local file to remote server
+scp /local/file.txt user@host:/remote/path/
 
-# Copy a file from a remote server to local machine
-scp olivier@server:/home/olivier/file.txt .
+# Copy remote file to local machine
+scp user@host:/remote/file.txt /local/path/
 
-# Copy with a specific SSH port
-scp -P 2222 file.txt olivier@127.0.0.1:/home/olivier/
+# Copy with specific SSH port
+scp -P 2222 file.txt user@127.0.0.1:/home/user/
 
 # Copy a directory recursively
-scp -r directory/ olivier@server:/home/olivier/
+scp -r /local/directory/ user@host:/remote/path/
+
+# Copy between two remote servers (from jump host)
+scp /tmp/file.txt banner@stapp03:/home/data/
 ```
 
-**Professional use**: sending scripts or config files to AWS EC2 instances.
+**scp syntax:**
+```
+scp source destination
+         ^              ^
+         |              └── user@host:/path (remote)
+         └── /local/path or user@host:/path
+```
+
+**Verify transfer after scp:**
+```bash
+# Connect and check
+ssh user@host
+ls /destination/path/
+```
+
+**Professional use**: scp is the standard for one-off file transfers between servers. For recurring transfers or synchronization, use `rsync` instead — more efficient and resumable.
+
+**Note on 100% confirmation:**
+```
+nautilus.txt.gpg    100%  105   307.5KB/s   00:00
+```
+The `100%` in scp output confirms the file was fully transferred without corruption.
 
 ## updog
 Simple Python tool that creates a temporary web server to share files on a local network. Not used in production — useful for quick file transfers between machines on the same network.

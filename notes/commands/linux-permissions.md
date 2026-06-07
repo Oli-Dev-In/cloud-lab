@@ -309,3 +309,98 @@ sudo chage -E 2027-02-17 username
 | Account expires | When the account will be disabled |
 
 **Professional use**: always verify expiry settings with `chage -l` after creating a user with `-e`. `grep /etc/passwd` does not show expiry dates.
+
+## getfacl
+Get File Access Control Lists — displays the ACL of a file. ACLs extend standard permissions by allowing permissions for specific users or groups beyond owner/group/others.
+
+```bash
+getfacl /etc/resolv.conf
+# output:
+# file: etc/resolv.conf
+# owner: root
+# group: root
+user::rw-
+group::r--
+other::r--
+```
+
+**ACL vs standard permissions:**
+| | chmod | ACL |
+|---|---|---|
+| Entities | owner, group, others | Any specific user or group |
+| Granularity | Limited to 3 entities | Unlimited |
+| Use case | Standard access control | Fine-grained per-user permissions |
+
+## getfacl
+Get File Access Control Lists — displays the ACL entries of a file. Shows permissions for owner, group, others, and any specific users or groups added via setfacl.
+
+```bash
+# View ACL of a file
+getfacl /etc/resolv.conf
+
+# Example output:
+# file: etc/resolv.conf
+# owner: root
+# group: root
+user::rw-
+group::r--
+other::r--
+user:ryan:r--      # ACL entry for specific user
+user:mariyam:---   # ACL entry — no permissions
+```
+
+**Professional reflex**: always run `getfacl` before and after modifying ACLs to verify the current state and confirm changes.
+
+## setfacl
+Set File Access Control Lists — modifies ACL entries for specific users or groups.
+
+```bash
+# Grant read-only permission to a specific user
+sudo setfacl -m u:username:r-- /etc/resolv.conf
+
+# Remove all permissions from a specific user
+sudo setfacl -m u:username:--- /etc/resolv.conf
+
+# Grant read-only permission to a specific group
+sudo setfacl -m g:groupname:r-- /etc/resolv.conf
+
+# Remove a specific ACL entry
+sudo setfacl -x u:username /etc/resolv.conf
+
+# Remove all ACL entries
+sudo setfacl -b /etc/resolv.conf
+
+# View result after modification
+getfacl /etc/resolv.conf
+```
+
+**setfacl -m syntax:**
+| Element | Meaning |
+|---|---|
+| `-m` | Modify — add or update an ACL entry |
+| `u:username` | Target a specific user |
+| `g:groupname` | Target a specific group |
+| `r--` | Read only |
+| `rw-` | Read and write |
+| `rwx` | Full permissions |
+| `---` | No permissions |
+
+**Professional workflow for ACL tasks:**
+```bash
+# 1. Check current state
+ls -l /file
+getfacl /file
+
+# 2. Set ownership if needed
+sudo chown root:root /file
+
+# 3. Set standard permissions
+sudo chmod 644 /file
+
+# 4. Set ACL entries
+sudo setfacl -m u:user1:--- /file    # no permissions
+sudo setfacl -m u:user2:r-- /file    # read only
+
+# 5. Verify
+getfacl /file
+```
